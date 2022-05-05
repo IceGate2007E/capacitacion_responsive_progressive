@@ -7,15 +7,17 @@ function App() {
     const [mobile, setMobile] = useState(false);
     const [sidebar, setSidebar] = useState(true);
 
+    const handleResize = () => {
+      if (Math.min(window.screen.width,window.innerWidth) < 880) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+      setSidebar(false);
+    };
+
     useEffect(() => {
-      const handleResize = () => {
-        if (window.innerWidth < 880) {
-          setMobile(true);
-        } else {
-          setMobile(false);
-        }
-        setSidebar(false);
-      };
+      handleResize();
 
       window.addEventListener("resize", handleResize);
       return () => {
@@ -57,7 +59,7 @@ function App() {
               <h2>Esta es una prueba de Responsive Web Design</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam tortor non ante pretium hendrerit. Pelientesque habitant morbi tristique senectus</p>
               <button className='more'>Conocer Más</button>
-              <button className='register'>Registrarse</button>
+              <button className='register' onClick={() => {alert(window.screen.width)}}>Registrarse</button>
             </div>
             <div className='right'>
               <p>+S</p>
